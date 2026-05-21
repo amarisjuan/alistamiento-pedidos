@@ -7,6 +7,13 @@ export type UnidadAlistamiento = 'cajas' | 'unidades';
 export type UserRole = 'supervisor' | 'alistador' | null;
 export type FilterType = 'todos' | 'pendientes' | 'completos' | 'parciales' | 'cero';
 
+export interface BarcodeResult {
+  success: boolean;
+  text: string;
+  item?: Item;
+  message: string;
+}
+
 export interface Session {
   id: string;
   nombre: string;

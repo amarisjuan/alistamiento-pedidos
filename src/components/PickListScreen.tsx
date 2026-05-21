@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { BusinessLogicService } from '../services/BusinessLogicService';
 import type { Item, FilterType } from '../models/types';
+import { BarcodeScanner } from './BarcodeScanner';
 import { ItemDetailModal } from './ItemDetailModal';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const FILTERS: { value: FilterType; label: string }[] = [
   { value: 'pendientes', label: 'Pendientes' },
@@ -19,6 +21,8 @@ const FILTERS: { value: FilterType; label: string }[] = [
 export function PickListScreen() {
   const { items, currentCity, currentFilter, setCurrentFilter } = useApp();
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
+  const [scannerOpen, setScannerOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   // Filtrar por ciudad primero
   const cityItems = currentCity
@@ -40,6 +44,16 @@ export function PickListScreen() {
             {f.label}
           </button>
         ))}
+
+        {isMobile && (
+          <button
+            className="filter-btn scanner-btn"
+            onClick={() => setScannerOpen(true)}
+            title="Escanear código"
+          >
+            📷 Escanear
+          </button>
+        )}
       </div>
 
       <div className="pick-list">
@@ -65,6 +79,16 @@ export function PickListScreen() {
           onClose={() => setSelectedItem(null)}
         />
       )}
+
+      <BarcodeScanner
+        items={items}
+        onDetected={(item) => {
+          setSelectedItem(item);
+          setScannerOpen(false);
+        }}
+        isOpen={scannerOpen}
+        onClose={() => setScannerOpen(false)}
+      />
     </section>
   );
 }

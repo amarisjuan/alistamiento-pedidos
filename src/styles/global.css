@@ -105,6 +105,25 @@ main { padding: 16px; max-width: 900px; margin: 0 auto; padding-bottom: 100px; }
 .filter-bar { display: flex; gap: 6px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; -webkit-overflow-scrolling: touch; }
 .filter-btn { flex-shrink: 0; padding: 7px 14px; border-radius: 18px; border: 1px solid var(--border); background: white; color: var(--muted); font-size: 13px; font-weight: 600; cursor: pointer; }
 .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+.filter-btn.scanner-btn { padding: 7px 12px; font-size: 18px; margin-left: auto; }
+.barcode-scanner-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7); display: flex; align-items: center; justify-content: center; z-index: 500; padding: 16px; }
+.barcode-scanner-container { width: min(100%, 560px); background: white; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-lg); }
+.barcode-scanner-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--border); }
+.barcode-scanner-header h2 { margin: 0; font-size: 17px; }
+.barcode-close-btn { border: none; background: transparent; color: var(--text); font-size: 22px; cursor: pointer; }
+.barcode-scanner-body { padding: 18px 20px 24px; }
+.barcode-error { color: var(--danger); background: var(--danger-light); border: 1px solid #f5c2c7; border-radius: 14px; padding: 12px 14px; margin-bottom: 14px; }
+.barcode-video-container { position: relative; border-radius: 18px; overflow: hidden; background: black; min-height: 280px; display: flex; align-items: center; justify-content: center; }
+.barcode-reader { width: 100%; min-height: 280px; }
+.barcode-status { margin-top: 14px; text-align: center; font-weight: 700; color: var(--warning); }
+.barcode-result { margin-top: 16px; border-radius: 16px; padding: 14px; background: #f8fafc; }
+.barcode-result.success { border-left: 4px solid var(--success); }
+.barcode-result.error { border-left: 4px solid var(--danger); }
+.result-code { font-weight: 700; word-break: break-word; }
+.result-message { color: var(--muted); margin-top: 6px; }
+.result-item { margin-top: 10px; font-size: 14px; color: var(--text); }
+.result-ref { font-weight: 700; }
+.result-desc { margin-top: 4px; }
 .pick-list { display: flex; flex-direction: column; gap: 10px; }
 .pick-card { background: var(--card); border-radius: 12px; padding: 14px; box-shadow: var(--shadow); border-left: 4px solid var(--border); cursor: pointer; position: relative; }
 .pick-card.complete { border-left-color: var(--success); background: #f0fdf4; }
